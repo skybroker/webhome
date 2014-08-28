@@ -79,8 +79,6 @@
 				</div>
 				<div class="col-md-12">
 					<img src="./images/apples0.png" id="main-feature-img-collabration" class="img-responsive main-feature-image" alt="Image"/>
-					<img src="./images/apples1.png" class="hidden"/>
-					<img src="./images/apples2.png" class="hidden"/>
 				</div>
 			</div>
 		</div>
@@ -96,7 +94,7 @@
                 <div class="col-sm-3 col-sm-offset-2">
                     <article class="home-features-item hover">
                         <div class="item-icon">
-                            <i class="fa fa-picture-o"></i>
+                            <i class="fa fa-question-circle"></i>
                         </div>
                         <div class="item-content">
                             <h3>提问</h3>
@@ -112,7 +110,7 @@
                 <div class="col-sm-3">
                     <article class="home-features-item hover">
                         <div class="item-icon">
-                            <i class="fa fa-dashboard"></i>
+                            <i class="fa fa-gears"></i>
                         </div>
                         <div class="item-content">
                             <h3>协作</h3>
@@ -128,7 +126,7 @@
                 <div class="col-sm-3">
                     <article class="home-features-item hover">
                         <div class="item-icon">
-                            <i class="fa fa-pagelines"></i>
+                            <i class="fa fa-users"></i>
                         </div>
                         <div class="item-content">
                             <h3>分享</h3>专业的病案管理与分享，是经验与知识的传承，社区智慧的沉淀与积累，同时也是
@@ -166,18 +164,11 @@
     <script src="./js/holder.js"></script>
     
     <script>
-	var pic_idx = 1;
-	function demoCollabration() {
-			$("#main-feature-img-collabration").attr("src", "./images/apples"+pic_idx+".png");
-			pic_idx = (pic_idx + 1) % 3;
-			setTimeout(demoCollabration, 2000);
-	}
     $(document).ready(function() {
         $('.hover').bind('touchstart', function(e) {
             e.preventDefault();
             $(this).toggleClass('cs-hover');
         });
-		setTimeout(demoCollabration, 3000);
     });
     </script>
 

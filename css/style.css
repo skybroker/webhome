@@ -2656,15 +2656,14 @@ figure.caption-right:hover img {
 /**/
 
 #main-feature {
-	padding: 20px;
 }
 #main-feature h1 {
 	color: #fff;
-	font-size: 3em;
+	font-size: 4em;
 }
 #main-feature h3 {
 	color: #fff;
-	font-size: 1.6em;
+	font-size: 2em;
 }
 .main-feature-image {
 	margin:0 auto;
