@@ -11,7 +11,6 @@
     <link href="./css/font-awesome.min.css" rel="stylesheet">
 
     <link href="./css/style.css" rel="stylesheet" media="screen" title="default">
-    <link href="./css/width-full.css" rel="stylesheet" media="screen" title="default">    
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -22,11 +21,8 @@
 
 <body>
 
-    <!-- boxed container -->
-    <div class="boxed">
-
     <!-- Top Nav Bar -->
-    <nav class="navbar navbar-inverse navbar-lime navbar-static-top no-margin" role="navigation">
+    <nav class="navbar navbar-default navbar-static-top no-margin" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -42,7 +38,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="worklist.html">浏览</a></li>
+                    <li class="active"><a href="#"><div class="fa fa-home"></div></a></li>
+                    <li><a href="worklist.htm"><div class="fa fa-th-list"></div></a></li>
+                    <li><a href="#"><div class="fa fa-user"></div></a></li>
                 </ul>
             </div><!-- navbar-collapse -->
         </div> <!-- container -->
@@ -50,25 +48,17 @@
 
 
     <!-- Home Carousel -->
-    <div id="main-feature" class="wrap-pattern home-section">
+    <div id="main-feature">
 		<div class="container">
-		<div id="carousel-home" class="carousel slide">
-		<div class="carousel-inner">
-		<div class="item active">
 			<div class="row">
-				<div class="col-md-12">
-					<div class="carousel-caption">
-						<h1>医学影像协作平台</h1>
-						<h3>尽责、明确、慎重地应用获得的最佳证据</h3>
-					</div>
+				<div class="title">
+					<h1>医学影像协作平台</h1>
+					<h3>尽责、明确、慎重地应用获得的最佳证据</h3>
 				</div>
-				<div class="col-md-12">
-					<img src="./images/apples0.png" id="main-feature-img-collabration" class="img-responsive main-feature-image" alt="Image"/>
+				<div>
+					<img src="./images/apples0.png" class="img-responsive main-feature-image" />
 				</div>
 			</div>
-		</div>
-		</div>
-		</div>
 		</div>
 	</div>
 
@@ -114,17 +104,15 @@
         </div> <!-- container -->
     </section> <!-- home-features -->
 
-    <footer id="footer">
+    <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12">
+                <div>
                     <p>© 2014, inc. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </footer> <!-- footer -->
-
-    </div> <!-- boxed -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="./js/jquery-1.10.2.min.js"></script>
