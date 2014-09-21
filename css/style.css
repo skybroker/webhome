@@ -214,3 +214,21 @@ body {
 	display: block;
 	margin: 0 auto;
 }
+/*---- user ----*/
+.user-info {
+	padding: 10px;
+	margin: 10px 0;
+	background-color: #eee;
+	border: solid 1px #ccc;
+	border-radius: 10px;	
+	min-height: 170px;
+}
+.user-info-header img {
+	height: 150px;
+}
+#usercases .worklist-item {
+	margin-top: 10px
+}
+#usercases h3 {
+	font-size: 1.1em;
+}
