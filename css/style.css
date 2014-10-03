@@ -199,6 +199,7 @@ body {
 	background-color: #eee;
 	border: solid 1px #ccc;
 	border-radius: 10px;
+	box-shadow: 4px 4px 2px #888888;
 }
 .worklist-item-text {
 	margin-top: 10px;
@@ -213,6 +214,23 @@ body {
 .worklist-item-img img {
 	display: block;
 	margin: 0 auto;
+}
+.worklist-toolbar {
+	height: 40px;
+	padding-bottom: 0;
+	vertical-align: middle;
+}
+.worklist-toolbar input {
+	margin-top: 0;
+}
+.worklist-toolbar i {
+	font-size: 1.6em;
+	width: 30px;
+	text-align: center;
+	padding-top: 4px;
+}
+.worklist-toolbar .worklist-item {
+	height: 50px;
 }
 /*---- user ----*/
 .user-info {
@@ -231,4 +249,30 @@ body {
 }
 #usercases h3 {
 	font-size: 1.1em;
+}
+/*---- detail ----*/
+.detail-panel .detail-image {
+	background-color: #000;
+}
+.detail-panel .detail-image img{
+	display: block;
+	margin: 0 auto;
+	width: 50%;
+}
+.detail-content > p {
+	margin-left: 50px;
+}
+.reply-list > div {
+	background-color: #eee;
+	margin-bottom: 5px;
+}
+.reply-user {
+	background-color: #ccc;
+	padding: 5px;
+	margin: 5px;
+	height: 60px;
+	width: 60px;
+}
+.reply-new > * {
+	display: inline-block;
 }

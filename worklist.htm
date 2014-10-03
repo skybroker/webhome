@@ -47,6 +47,14 @@
 
 	<div class="container" id="worklist">
 		<div class="row">
+			<div class="col-xs-12 worklist-toolbar">
+				<div class="worklist-item">
+					<a href="addpost.htm" ><i class="fa fa-plus"></i></a>
+					<a href="#" ><i class="fa fa-search pull-right"></i></a>
+					<input type="text" class="pull-right" />
+				</div>
+			</div>
+			<!--
 			<div class="col-md-4 col-sm-6 col-xs-12">
 				<div class="worklist-item">
 					<div class="worklist-item-img">
@@ -114,9 +122,8 @@
 					</div>
 				</div>
 			</div>
-
+			-->
 		</div>
-
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -128,4 +135,30 @@
     <script src="./js/holder.js"></script>
 
 </body>
+<script>
+$(function(){
+	$.get("./server/postlist",
+		function(data){
+			var $wkroot = $("#worklist .row");
+			var str = "";
+			for(var idx in data) {
+				var itm = data[idx];
+				str += "<div class=\"col-md-4 col-sm-6 col-xs-12\"><div class=\"worklist-item\">"
+					+"<h3><i class=\"fa fa-tags pull-left\"></i>"+itm.title+"</h3>"
+					+"<div class=\"worklist-item-img\"><a href=\"detail.htm\"><img src=\"./images/dicom.jpg\" class=\"img-responsive\" /></a></div>"
+					+"<div class=\"worklist-item-text\">"
+					+"<p>"+itm.content+"</p>"
+					+"<p>"+itm.findings+"</p>"
+					+"<p>"+itm.diagnosis+"</p>"
+					+"<div class=\"worklist-item-footer\">"
+					+"<i class=\"fa fa-heart pull-left\">11</i>"
+					+"</div></div>"
+					+"</div></div>";
+			}
+			if(str != null && str != "")
+				$wkroot.append(str);
+		}
+	);
+});
+</script>
 </html>

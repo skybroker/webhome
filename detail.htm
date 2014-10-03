@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>微至Healthphere.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./css/style.css" rel="stylesheet" media="screen" title="default">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="detail-panel">
+				<h3><i class="fa fa-question-circle pull-left"></i>跪求，这个病例搞不定</h3>
+				<div class="detail-image">
+						<img src="./images/dicom.jpg" class="img-responsive" />
+				</div>
+				<div class="detail-content">
+					
+				</div>
+				<div class="worklist-item-footer">
+					<i class="fa fa-heart pull-left">11</i>
+				</div>
+				<div class="reply-list">
+				</div>
+				<div class="reply-new">
+					<textarea class="form-control" name="new-content" id="new-content" rows="3"></textarea>
+					<input type="submit" value="提交" class="pull-right">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./js/jquery-1.10.2.min.js"></script>
+    <script src="./js/jquery.cookie.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/transicion.js"></script>
+    <script src="./js/holder.js"></script>
+
+</body>
+<script>
+function retrieveReplies(postid) {
+	$.get("./server/replylist?postid="+postid,
+		function(data){
+			var $rlroot = $(".reply-list");
+			var str = "";
+			for(var idx in data) {
+				var itm = data[idx];
+				str += "<div class=\"col-xs-12\">"
+					+"<div class=\"reply-user "+ (idx==5?"pull-right":"pull-left") +"\">"+itm.username+"</div>"
+					+"<span class=\"reply-content\">"+itm.content+"</span>"
+					+"</div>";
+			}
+			if(str != null && str != "")
+				$rlroot.append(str);
+		}
+	);
+}
+$(function(){
+	$.get("./server/postinfo",
+		function(data){
+			var $wkroot = $(".detail-content");
+			var str = "";
+				var itm = data;
+				str += "<p><h4>内容</h4></p><p>"+itm.content+"</p>"
+					+"<h4>所见</h4><p>"+itm.findings+"</p>"
+					+"<h4>所得</h4><p>"+itm.diagnosis+"</p>"
+					+"<h4>讨论</h4><p>"+itm.discussion+"</p>";
+			if(str != null && str != "") {
+				$wkroot.append(str);
+				retrieveReplies(data.postid);
+			}
+		}
+	);
+});
+</script>
+</html>
