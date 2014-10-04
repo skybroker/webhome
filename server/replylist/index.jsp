@@ -2,21 +2,41 @@
 <%@ page import="org.json.simple.JSONObject" %>
 <%@ page import="java.text.SimpleDateFormat" %>  
 <%@ page import="java.util.ArrayList" language="java" %>
+<%@ page import="java.sql.*, javax.sql.*, java.io.*" %>
 <%
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 ArrayList objs = new ArrayList();
-for(int i=0; i<10; ++i){
-    JSONObject obj=new JSONObject();
-    obj.put("replyid", i);
-    obj.put("postid", request.getParameter("postid"));
-    obj.put("userid", 100+i);
-    obj.put("username", "奥巴马"+i+"世");
-    obj.put("content", "执行过程中，如果出现连不上 commondatastorage.googleapis.com （连接被重置），修改 trunk/webrtc/tools/update_resources.py，将 http 改为 https 就可以了");
-    obj.put("quotedreplyid", "");
-    obj.put("createdtime", sdf.format(new java.util.Date()) );
-    obj.put("updatedtime", sdf.format(new java.util.Date()) );
-
-	objs.add(obj);
+Statement stmt = null;
+int userid = 100;
+String postid = request.getParameter("postid");
+try {
+    String connectionURL = "jdbc:mysql://localhost/webhome";
+    Connection connection = null;
+    Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+    connection = DriverManager.getConnection(connectionURL, "root", "100200");
+    if(!connection.isClosed()) {
+		String sql = "select * from reply where postid="+postid;
+		stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		while(rs.next()){
+			JSONObject obj=new JSONObject();
+			obj.put("replyid", rs.getInt("replyid"));
+			obj.put("postid", rs.getInt("postid"));
+			obj.put("userid", userid);
+			obj.put("quotedreplyid", rs.getInt("quotedreplyid"));
+			obj.put("username", "User Name".replace("<", "&lt;").replace(">", "&gt;"));
+			obj.put("content", rs.getString("content").replace("<", "&lt;").replace(">", "&gt;"));
+			if(rs.getTimestamp("createdtime") != null)
+				obj.put("createdtime", sdf.format((java.util.Date)rs.getTimestamp("createdtime")));
+			if(rs.getTimestamp("updatedtime") != null)
+				obj.put("updatedtime", sdf.format((java.util.Date)rs.getTimestamp("updatedtime")));
+			objs.add(obj);
+		}
+		rs.close();
+	}
+    connection.close();
+}catch(Exception ex){
+    out.println(ex);
 }
 out.print(objs);
 out.flush();

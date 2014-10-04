@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
@@ -19,7 +19,7 @@
     <![endif]-->
 </head>
 <body>
-<form action="./server/postnew" method="post">
+<form id="thisForm">
 	<div class="container">
 		<div class="row">
 			<h2><center>新建</center></h2>
@@ -27,13 +27,13 @@
 				<label for="type">类型</label>
 				<div class="btn-group" data-toggle="buttons">
 					<label class="btn btn-primary">
-						<input type="radio" name="type" id="type">求助
+						<input type="radio" name="type" id="type" value="">&nbsp;无&nbsp;
 					</label>
 					<label class="btn btn-primary">
-						<input type="radio" name="type" id="type">教学
+						<input type="radio" name="type" id="type" value="1">求助
 					</label>
 					<label class="btn btn-primary">
-						<input type="radio" name="type" id="type">案例
+						<input type="radio" name="type" id="type" value="2">教学
 					</label>
 				</div>
 			</div>
@@ -75,9 +75,21 @@
 </body>
 <script>
 $(function(){
-	$("#submitThis").on("click", function(){
+	$("#submitThis").on("click", function(e){
+		e.preventDefault();
+		var title = $("#title").val();
+		if(title == null || title == "") {
+			alert("标题不能为空!");
+			return;
+		}
+		var content = $("#content").val();
+		if(content == null || content == "") {
+			alert("内容不能为空!");
+			return;
+		}
 		$.post(
-			"./server/postnew",
+			"./server/postnew/index.jsp",
+			$("#thisForm").serialize(),
 			function(data) {
 				if(data != null && data.postid != null && data.postid>0) {
 					alert("提交成功");

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
@@ -57,64 +57,13 @@
 			<!--
 			<div class="col-md-4 col-sm-6 col-xs-12">
 				<div class="worklist-item">
+					<h3><i class="fa fa-question-circle pull-left"></i>跪求，这个病例搞不定</h3>
 					<div class="worklist-item-img">
 						<a href="detail.html">
 							<img src="./images/dicom.jpg" class="img-responsive" />
 						</a>
 					</div>
 					<div class="worklist-item-text">
-						<h3><i class="fa fa-question-circle pull-left"></i>跪求，这个病例搞不定</h3>
-						<p>胸廓左右对称，双上肺见少许索条与邻近胸膜粘连。左上肺胸膜下见泡影，双肺内见弥漫分布粟粒结节，分布教均匀，大小较均匀。双肺门似见斑点状钙化灶。双肺门及纵隔内多发肿大淋巴结，双侧胸腔未见积液征。主动脉肺动脉及其分支显影较好，未见异常密度。肝右叶隔顶区见细小低密度</p>
-						<div class="worklist-item-footer">
-							<i class="fa fa-heart pull-left">11</i>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 col-sm-6 col-xs-12">
-				<div class="worklist-item">
-					<div class="worklist-item-img">
-						<a href="detail.html">
-							<img src="./images/dicom.jpg" class="img-responsive" />
-						</a>
-					</div>
-					<div class="worklist-item-text">
-						<h3><i class="fa fa-tags pull-left"></i>教学，埃博拉诊断流程</h3>
-						<p>胸廓左右对称，双上肺见少许索条与邻近胸膜粘连。左上肺胸膜下见泡影，双肺内见弥漫分布粟粒结节，分布教均匀，大小较均匀。双肺门似见斑点状钙化灶。双肺门及纵隔内多发肿大淋巴结，双侧胸腔未见积液征。主动脉肺动脉及其分支显影较好，未见异常密度。肝右叶隔顶区见细小低密度</p>
-						<div class="worklist-item-footer">
-							<i class="fa fa-heart pull-left">11</i>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 col-sm-6 col-xs-12">
-				<div class="worklist-item">
-					<div class="worklist-item-img">
-						<a href="detail.html">
-							<img src="./images/dicom.jpg" class="img-responsive" />
-						</a>
-					</div>
-					<div class="worklist-item-text">
-						<h3><i class="fa fa-question-circle pull-left"></i>跪求，这个病例搞不定</h3>
-						<p>胸廓左右对称，双上肺见少许索条与邻近胸膜粘连。左上肺胸膜下见泡影，双肺内见弥漫分布粟粒结节，分布教均匀，大小较均匀。双肺门似见斑点状钙化灶。双肺门及纵隔内多发肿大淋巴结，双侧胸腔未见积液征。主动脉肺动脉及其分支显影较好，未见异常密度。肝右叶隔顶区见细小低密度</p>
-						<div class="worklist-item-footer">
-							<i class="fa fa-heart pull-left">11</i>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 col-sm-6 col-xs-12">
-				<div class="worklist-item">
-					<div class="worklist-item-img">
-						<a href="detail.html">
-							<img src="./images/dicom.jpg" class="img-responsive" />
-						</a>
-					</div>
-					<div class="worklist-item-text">
-						<h3><i class="fa fa-tags pull-left"></i>教学，埃博拉诊断流程</h3>
 						<p>胸廓左右对称，双上肺见少许索条与邻近胸膜粘连。左上肺胸膜下见泡影，双肺内见弥漫分布粟粒结节，分布教均匀，大小较均匀。双肺门似见斑点状钙化灶。双肺门及纵隔内多发肿大淋巴结，双侧胸腔未见积液征。主动脉肺动脉及其分支显影较好，未见异常密度。肝右叶隔顶区见细小低密度</p>
 						<div class="worklist-item-footer">
 							<i class="fa fa-heart pull-left">11</i>
@@ -142,21 +91,40 @@ $(function(){
 			var $wkroot = $("#worklist .row");
 			var str = "";
 			for(var idx in data) {
-				var itm = data[idx];
+				var postid = data[idx].postid;
+				var title = data[idx].title;
+				var content = data[idx].content;
+				var findings = data[idx].findings;
+				var diagnosis = data[idx].diagnosis;
+				if(title==null)
+					title = "";
+				if(content==null)
+					content = "";
+				if(findings==null)
+					findings = "";
+				if(diagnosis==null)
+					diagnosis = "";
+				var icn = "";
+				if(data[idx].type == 1) {
+					icn = "<i class='fa fa-question-circle pull-left'></i>";
+				} if(data[idx].type == 2) {
+					icn = "<i class='fa fa-tags pull-left'></i>";
+				}
 				str += "<div class=\"col-md-4 col-sm-6 col-xs-12\"><div class=\"worklist-item\">"
-					+"<h3><i class=\"fa fa-tags pull-left\"></i>"+itm.title+"</h3>"
-					+"<div class=\"worklist-item-img\"><a href=\"detail.htm\"><img src=\"./images/dicom.jpg\" class=\"img-responsive\" /></a></div>"
+					+"<h3 class=\"worklist-item-title\">"+icn+title+"</h3>"
+					+"<div class=\"worklist-item-img\"><a href=\"detail.jsp?postid="+postid+"\"><img src=\"./images/dicom.jpg\" class=\"img-responsive\" /></a></div>"
 					+"<div class=\"worklist-item-text\">"
-					+"<p>"+itm.content+"</p>"
-					+"<p>"+itm.findings+"</p>"
-					+"<p>"+itm.diagnosis+"</p>"
+					+"<p>"+content+"</p>"
+					//+"<p>"+findings+"</p>"
+					//+"<p>"+diagnosis+"</p>"
 					+"<div class=\"worklist-item-footer\">"
 					+"<i class=\"fa fa-heart pull-left\">11</i>"
 					+"</div></div>"
 					+"</div></div>";
 			}
-			if(str != null && str != "")
+			if(str != null && str != "") {
 				$wkroot.append(str);
+			}
 		}
 	);
 });
