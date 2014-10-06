@@ -272,6 +272,7 @@ body {
 .reply-list > div {
 	background-color: #eee;
 	margin-bottom: 5px;
+	padding: 0;
 }
 .reply-user {
 	background-color: #ccc;
@@ -283,4 +284,5 @@ body {
 .reply-content {
 	width: 100%;
 	border: none;
+	background-color: transparent;
 }

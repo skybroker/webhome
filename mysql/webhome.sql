@@ -42,5 +42,35 @@ CREATE TABLE `reply` (
   UNIQUE KEY `replyid_UNIQUE` (`replyid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gb2312$$;
 
+delimiter $$
 
+CREATE TABLE `userinfo` (
+  `UserID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `LoginName` varchar(64) NOT NULL,
+  `Password` varchar(64) NOT NULL,
+  `UserName` varchar(64) DEFAULT NULL,
+  `UserNamePinYin` varchar(64) DEFAULT NULL,
+  `Desc` varchar(64) DEFAULT NULL,
+  `Hospital` varchar(64) DEFAULT NULL,
+  `Department` varchar(64) DEFAULT NULL,
+  `Title` varchar(64) DEFAULT NULL,
+  `PhoneNumber` varchar(64) DEFAULT NULL,
+  `Address` varchar(64) DEFAULT NULL,
+  `RegisterFromOther` int(11) DEFAULT NULL,
+  `ExternalToken` varchar(4096) DEFAULT NULL,
+  PRIMARY KEY (`UserID`),
+  UNIQUE KEY `userid_UNIQUE` (`UserID`),
+  UNIQUE KEY `loginname_UNIQUE` (`LoginName`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312$$
+
+delimiter $$
+
+CREATE TABLE `userinfoex` (
+  `UserID` int(10) unsigned NOT NULL,
+  `PostNumber` int(10) unsigned DEFAULT NULL,
+  `CommentsNumber` int(10) unsigned DEFAULT NULL,
+  `LikesNumber` int(10) unsigned DEFAULT NULL,
+  `ClassicCaesNumber` int(10) unsigned DEFAULT NULL,
+  UNIQUE KEY `userid_UNIQUE` (`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312$$
 

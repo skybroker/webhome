@@ -1,3 +1,12 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="java.io.*,java.util.*" %>
+<%
+if(session.getAttribute("userid") == null || session.getAttribute("userid") == ""){
+	response.setStatus(response.SC_MOVED_TEMPORARILY);
+	response.setHeader("Location", "./login.jsp?redirect=./addpost.jsp"); 
+	return;
+}
+%>
 <!DOCTYPE html>
 <html lang="cn">
 <head>
@@ -69,8 +78,8 @@
     <script src="./js/jquery.cookie.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/transicion.js"></script>
     <script src="./js/holder.js"></script>
+    <script src="./js/myapp.js"></script>
 
 </body>
 <script>

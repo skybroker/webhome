@@ -51,8 +51,8 @@
     <script src="./js/jquery.cookie.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/transicion.js"></script>
     <script src="./js/holder.js"></script>
+    <script src="./js/myapp.js"></script>
 
 </body>
 <script charset="UTF-8">
@@ -120,8 +120,11 @@ $(function(){
 						+"<div class=\"reply-user pull-right\">"+"xxx"+"</div>"
 						+"<textarea readonly class=\"reply-content\">"+content+"</textarea>"
 						+"</div>";
-					if(str != null && str != "")
+					if(str != null && str != "") {
 						$rlroot.append(str);
+						expandTextArea();
+					}
+					$("#new-content").val("");
 				}
 			}
 		);
